@@ -1,11 +1,13 @@
 package DTO;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
+@Schema(description = "Сущность элемента графика платежа")
 public class PaymentScheduleElement {
     private Integer number;
     private LocalDate date;
@@ -60,5 +62,17 @@ public class PaymentScheduleElement {
 
     public void setRemainingDebt(BigDecimal remainingDebt) {
         this.remainingDebt = remainingDebt;
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentScheduleElement{" +
+                "number=" + number +
+                ", date=" + date +
+                ", totalPayment=" + totalPayment +
+                ", interestPayment=" + interestPayment +
+                ", debtPayment=" + debtPayment +
+                ", remainingDebt=" + remainingDebt +
+                '}';
     }
 }

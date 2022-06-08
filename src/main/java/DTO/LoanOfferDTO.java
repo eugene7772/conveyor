@@ -1,10 +1,12 @@
 package DTO;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Data
+@Schema(description = "Сущность кредитного предложения")
 public class LoanOfferDTO {
     private Long applicationId;
     private BigDecimal requestedAmount;
@@ -77,5 +79,19 @@ public class LoanOfferDTO {
 
     public void setSalaryClient(Boolean salaryClient) {
         isSalaryClient = salaryClient;
+    }
+
+    @Override
+    public String toString() {
+        return "LoanOfferDTO{" +
+                "applicationId=" + applicationId +
+                ", requestedAmount=" + requestedAmount +
+                ", totalAmount=" + totalAmount +
+                ", term=" + term +
+                ", monthlyPayment=" + monthlyPayment +
+                ", rate=" + rate +
+                ", isInsuranceEnabled=" + isInsuranceEnabled +
+                ", isSalaryClient=" + isSalaryClient +
+                '}';
     }
 }

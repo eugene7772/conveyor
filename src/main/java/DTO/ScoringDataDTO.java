@@ -2,12 +2,14 @@ package DTO;
 
 import enums.Gender;
 import enums.MaritalStatus;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
+@Schema(description = "Сущность данных для формирования кредита")
 public class ScoringDataDTO {
     private BigDecimal amount;
     private Integer term;
@@ -161,5 +163,28 @@ public class ScoringDataDTO {
 
     public void setSalaryClient(Boolean salaryClient) {
         isSalaryClient = salaryClient;
+    }
+
+    @Override
+    public String toString() {
+        return "ScoringDataDTO{" +
+                "amount=" + amount +
+                ", term=" + term +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", gender=" + gender +
+                ", birthdate=" + birthdate +
+                ", passportSeries='" + passportSeries + '\'' +
+                ", passportNumber='" + passportNumber + '\'' +
+                ", passportIssueDate=" + passportIssueDate +
+                ", passportIssueBranch='" + passportIssueBranch + '\'' +
+                ", maritalStatus=" + maritalStatus +
+                ", dependentAmount=" + dependentAmount +
+                ", employmentDTO=" + employmentDTO +
+                ", account='" + account + '\'' +
+                ", isInsuranceEnabled=" + isInsuranceEnabled +
+                ", isSalaryClient=" + isSalaryClient +
+                '}';
     }
 }

@@ -1,11 +1,13 @@
 package DTO;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
+@Schema(description = "Сущность заявки на получение кредита")
 public class LoanApplicationRequestDTO {
     private BigDecimal amount;
     private Integer term;
@@ -87,5 +89,20 @@ public class LoanApplicationRequestDTO {
 
     public void setPassportNumber(String passportNumber) {
         this.passportNumber = passportNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "LoanApplicationRequestDTO{" +
+                "amount=" + amount +
+                ", term=" + term +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", email='" + email + '\'' +
+                ", birthdate=" + birthdate +
+                ", passportSeries='" + passportSeries + '\'' +
+                ", passportNumber='" + passportNumber + '\'' +
+                '}';
     }
 }

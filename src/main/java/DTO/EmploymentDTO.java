@@ -2,11 +2,13 @@ package DTO;
 
 import enums.EmploymentStatus;
 import enums.Position;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Data
+@Schema(description = "Сущность работника")
 public class EmploymentDTO {
     private EmploymentStatus employmentStatus;
     private String employerINN;
@@ -61,5 +63,17 @@ public class EmploymentDTO {
 
     public void setWorkExperienceCurrent(Integer workExperienceCurrent) {
         this.workExperienceCurrent = workExperienceCurrent;
+    }
+
+    @Override
+    public String toString() {
+        return "EmploymentDTO{" +
+                "employmentStatus=" + employmentStatus +
+                ", employerINN='" + employerINN + '\'' +
+                ", salary=" + salary +
+                ", position=" + position +
+                ", workExperienceTotal=" + workExperienceTotal +
+                ", workExperienceCurrent=" + workExperienceCurrent +
+                '}';
     }
 }
