@@ -1,7 +1,7 @@
-package DTO;
+package com.CreditPipeline.conveyor.DTO;
 
-import enums.EmploymentStatus;
-import enums.Position;
+import com.CreditPipeline.conveyor.enums.EmploymentStatus;
+import com.CreditPipeline.conveyor.enums.Position;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -10,11 +10,17 @@ import java.math.BigDecimal;
 @Data
 @Schema(description = "Сущность работника")
 public class EmploymentDTO {
+
     private EmploymentStatus employmentStatus;
+
     private String employerINN;
+
     private BigDecimal salary;
+
     private Position position;
+
     private Integer workExperienceTotal;
+
     private Integer workExperienceCurrent;
 
     public EmploymentStatus getEmploymentStatus() {

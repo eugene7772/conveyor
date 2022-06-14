@@ -1,7 +1,7 @@
-package service;
+package com.CreditPipeline.conveyor.service;
 
-import DTO.ScoringDataDTO;
-import enums.EmploymentStatus;
+import com.CreditPipeline.conveyor.DTO.ScoringDataDTO;
+import com.CreditPipeline.conveyor.enums.EmploymentStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

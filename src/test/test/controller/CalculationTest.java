@@ -1,8 +1,9 @@
 package controller;
 
-import DTO.CreditDTO;
-import DTO.PaymentScheduleElement;
-import DTO.ScoringDataDTO;
+import com.CreditPipeline.conveyor.DTO.CreditDTO;
+import com.CreditPipeline.conveyor.DTO.PaymentScheduleElement;
+import com.CreditPipeline.conveyor.DTO.ScoringDataDTO;
+import com.CreditPipeline.conveyor.controller.Calculation;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

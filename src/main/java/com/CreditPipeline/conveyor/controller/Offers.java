@@ -1,10 +1,12 @@
-package controller;
+package com.CreditPipeline.conveyor.controller;
 
-import DTO.LoanApplicationRequestDTO;
-import DTO.LoanOfferDTO;
+import com.CreditPipeline.conveyor.DTO.LoanApplicationRequestDTO;
+import com.CreditPipeline.conveyor.DTO.LoanOfferDTO;
+import com.CreditPipeline.conveyor.service.PrescoringService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,12 +16,13 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @RestController
 @Tag(name = "Предложения",description = "Контроллер создает 4 предложения")
 public class Offers {
+
+    @Autowired
+    PrescoringService prescoringService;
 
     private static Logger logger = Logger.getLogger(Offers.class);
 
@@ -35,30 +38,11 @@ public class Offers {
 
         List<LoanOfferDTO> offers = new ArrayList<>();
 
-        Pattern validEmail = Pattern.compile(" [\\w\\.]{2,50}@[\\w\\.]{2,20}", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = validEmail.matcher(loanApplicationRequestDTO.getEmail());
-
-        final long age = LocalDate.from(loanApplicationRequestDTO.getBirthdate()).until(LocalDate.now(), ChronoUnit.YEARS);
-
         //Прескоринг (отсеивание неправильных заявок), создание 4 предложений и добавление их в список
-        if (loanApplicationRequestDTO.getFirstName().length() >= 2 & loanApplicationRequestDTO.getFirstName().length() <= 30 &
-                loanApplicationRequestDTO.getLastName().length() >= 2 & loanApplicationRequestDTO.getLastName().length() <= 30 &
-                loanApplicationRequestDTO.getAmount().compareTo(BigDecimal.valueOf(10000)) >= 0 &
-                loanApplicationRequestDTO.getTerm() >= 6 &
-                age >= 18 &
-                matcher.find() &
-                NumberUtils.isParsable(loanApplicationRequestDTO.getPassportSeries()) &
-                loanApplicationRequestDTO.getPassportSeries().length() == 4 &
-                NumberUtils.isParsable(loanApplicationRequestDTO.getPassportNumber()) &
-                loanApplicationRequestDTO.getPassportNumber().length() == 6
-        ) {
+        if (!prescoringService.prescoringData(loanApplicationRequestDTO)) {
+            return null;
+        }
             logger.info("create offers");
-            if (loanApplicationRequestDTO.getMiddleName() != null) {
-                if (!(loanApplicationRequestDTO.getMiddleName().length() >= 2) & !(loanApplicationRequestDTO.getMiddleName().length() <= 30)) {
-                    //Возращается отказ (0 предложений)
-                    return offers;
-                }
-            }
             //Создание 4 предложений
 
             //Ставка 12.5
@@ -109,10 +93,6 @@ public class Offers {
             offer4.setTotalAmount(loanApplicationRequestDTO.getAmount());
             offers.add(offer4);
 
-        } else {
-            //Возращается отказ (0 предложений)
-            return offers;
-        }
         logger.info("return offers");
         //Возвращает 4 предложения
         return offers;

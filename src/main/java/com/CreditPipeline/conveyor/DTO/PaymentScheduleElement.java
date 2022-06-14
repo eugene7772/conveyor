@@ -1,4 +1,4 @@
-package DTO;
+package com.CreditPipeline.conveyor.DTO;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -9,11 +9,17 @@ import java.time.LocalDate;
 @Data
 @Schema(description = "Сущность элемента графика платежа")
 public class PaymentScheduleElement {
+
     private Integer number;
+
     private LocalDate date;
+
     private BigDecimal totalPayment;
+
     private BigDecimal interestPayment;
+
     private BigDecimal debtPayment;
+
     private BigDecimal remainingDebt;
 
     public Integer getNumber() {

@@ -1,7 +1,7 @@
-package DTO;
+package com.CreditPipeline.conveyor.DTO;
 
-import enums.Gender;
-import enums.MaritalStatus;
+import com.CreditPipeline.conveyor.enums.Gender;
+import com.CreditPipeline.conveyor.enums.MaritalStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import java.math.BigDecimal;
@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Schema(description = "Сущность данных для формирования кредита")
 @Data
 public class ScoringDataDTO {
+
     private BigDecimal amount;
     private Integer term;
     private String firstName;

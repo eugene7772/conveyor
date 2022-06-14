@@ -1,12 +1,12 @@
-package controller;
+package com.CreditPipeline.conveyor.controller;
 
-import DTO.CreditDTO;
-import DTO.PaymentScheduleElement;
-import DTO.ScoringDataDTO;
-import enums.EmploymentStatus;
-import enums.Gender;
-import enums.MaritalStatus;
-import enums.Position;
+import com.CreditPipeline.conveyor.DTO.CreditDTO;
+import com.CreditPipeline.conveyor.DTO.PaymentScheduleElement;
+import com.CreditPipeline.conveyor.DTO.ScoringDataDTO;
+import com.CreditPipeline.conveyor.enums.EmploymentStatus;
+import com.CreditPipeline.conveyor.enums.Gender;
+import com.CreditPipeline.conveyor.enums.MaritalStatus;
+import com.CreditPipeline.conveyor.enums.Position;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RestController;
-import service.ScoringService;
+import com.CreditPipeline.conveyor.service.ScoringService;
 
 
 @RestController

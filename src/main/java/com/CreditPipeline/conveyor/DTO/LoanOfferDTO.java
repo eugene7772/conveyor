@@ -1,28 +1,52 @@
-package DTO;
+package com.CreditPipeline.conveyor.DTO;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
-@Schema(description = "Сущность кредита")
-public class CreditDTO {
-    private BigDecimal amount;
+@Schema(description = "Сущность кредитного предложения")
+public class LoanOfferDTO {
+
+    private Long applicationId;
+
+    private BigDecimal requestedAmount;
+
+    private BigDecimal totalAmount;
+
     private Integer term;
+
     private BigDecimal monthlyPayment;
+
     private BigDecimal rate;
-    private BigDecimal psk;
+
     private Boolean isInsuranceEnabled;
-    private List<PaymentScheduleElement> paymentSchedule;
+
     private Boolean isSalaryClient;
 
-    public BigDecimal getAmount() {
-        return amount;
+    public Long getApplicationId() {
+        return applicationId;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    public void setApplicationId(Long applicationId) {
+        this.applicationId = applicationId;
+    }
+
+    public BigDecimal getRequestedAmount() {
+        return requestedAmount;
+    }
+
+    public void setRequestedAmount(BigDecimal requestedAmount) {
+        this.requestedAmount = requestedAmount;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     public Integer getTerm() {
@@ -49,28 +73,12 @@ public class CreditDTO {
         this.rate = rate;
     }
 
-    public BigDecimal getPsk() {
-        return psk;
-    }
-
-    public void setPsk(BigDecimal psk) {
-        this.psk = psk;
-    }
-
     public Boolean getInsuranceEnabled() {
         return isInsuranceEnabled;
     }
 
     public void setInsuranceEnabled(Boolean insuranceEnabled) {
         isInsuranceEnabled = insuranceEnabled;
-    }
-
-    public List<PaymentScheduleElement> getPaymentSchedule() {
-        return paymentSchedule;
-    }
-
-    public void setPaymentSchedule(List<PaymentScheduleElement> paymentSchedule) {
-        this.paymentSchedule = paymentSchedule;
     }
 
     public Boolean getSalaryClient() {
@@ -83,14 +91,14 @@ public class CreditDTO {
 
     @Override
     public String toString() {
-        return "CreditDTO{" +
-                "amount=" + amount +
+        return "LoanOfferDTO{" +
+                "applicationId=" + applicationId +
+                ", requestedAmount=" + requestedAmount +
+                ", totalAmount=" + totalAmount +
                 ", term=" + term +
                 ", monthlyPayment=" + monthlyPayment +
                 ", rate=" + rate +
-                ", psk=" + psk +
                 ", isInsuranceEnabled=" + isInsuranceEnabled +
-                ", paymentSchedule=" + paymentSchedule +
                 ", isSalaryClient=" + isSalaryClient +
                 '}';
     }

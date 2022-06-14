@@ -1,4 +1,4 @@
-package enums;
+package com.CreditPipeline.conveyor.enums;
 
 public enum Position {
     Manager,
