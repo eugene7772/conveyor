@@ -10,7 +10,6 @@ public class ConveyorApplication {
     @Operation(
             summary = "Запуск преложения",
             description = "Позволяет запустить преложение")
-    public static void main(String[] args) {
-        SpringApplication.run(ConveyorApplication.class, args);
+    public static void main(String[] args) {SpringApplication.run(ConveyorApplication.class, args);
     }
 }
