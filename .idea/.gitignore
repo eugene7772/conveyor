@@ -1,3 +1,8 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+/compiler.xml
+/encodings.xml
+/uiDesigner.xml
+/vcs.xml
+/pom.xml
