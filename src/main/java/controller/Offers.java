@@ -5,9 +5,10 @@ import DTO.LoanOfferDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.apache.log4j.Logger;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Controller
+@RestController
 @Tag(name = "Предложения",description = "Контроллер создает 4 предложения")
 public class Offers {
 

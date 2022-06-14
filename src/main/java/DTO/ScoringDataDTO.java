@@ -4,12 +4,12 @@ import enums.Gender;
 import enums.MaritalStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Data
+
 @Schema(description = "Сущность данных для формирования кредита")
+@Data
 public class ScoringDataDTO {
     private BigDecimal amount;
     private Integer term;

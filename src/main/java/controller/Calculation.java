@@ -9,7 +9,7 @@ import enums.MaritalStatus;
 import enums.Position;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -18,36 +18,33 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.springframework.web.bind.annotation.RestController;
+import service.ScoringService;
 
 
-@Controller
+@RestController
 @Tag(name = "Калькулятор",description = "Данный контроллер рассчитывает кредит")
 public class Calculation {
+
+    @Autowired
+    ScoringService scoringService;
 
     private static Logger logger = Logger.getLogger(Calculation.class);
 
     @PostMapping("/conveyor/calculation")
     @Operation(
             summary = "Расчет",
-            description = "Расчитывет кредит")
+            description = "Рассчитывает кредит")
     public CreditDTO calculate(ScoringDataDTO scoringDataDTO) {
-
-        logger.trace("calculate");
 
         final long age = LocalDate.from(scoringDataDTO.getBirthdate()).until(LocalDate.now(), ChronoUnit.YEARS);
         LocalDate now = LocalDate.now();
         CreditDTO credit = new CreditDTO();
         List<PaymentScheduleElement> paymentSchedules = new ArrayList<>();
 
-        if (scoringDataDTO.getEmploymentDTO().getEmploymentStatus().toString().equals(EmploymentStatus.Unemployed.toString()) ||
-                scoringDataDTO.getAmount().compareTo(scoringDataDTO.getEmploymentDTO().getSalary().multiply(BigDecimal.valueOf(20))) >= 0 ||
-                age < 20 ||
-                age > 60 ||
-                scoringDataDTO.getEmploymentDTO().getWorkExperienceTotal() < 12 ||
-                scoringDataDTO.getEmploymentDTO().getWorkExperienceCurrent() < 3) {
+        if ( !scoringService.scoringData(scoringDataDTO) ) {
             return null;
         } else {
-            logger.info("calculate");
 
             credit.setAmount(scoringDataDTO.getAmount());
             credit.setRate(calculateRate(scoringDataDTO));
@@ -115,9 +112,6 @@ public class Calculation {
         return credit;
     }
 
-    @Operation(
-            summary = "Расчет стваки",
-            description = "Возвращает проецнтную ставку по заданным условия")
     public static BigDecimal calculateRate(ScoringDataDTO scoringDataDTO) {
         BigDecimal baseRate = new BigDecimal(11);
         final long age = LocalDate.from(scoringDataDTO.getBirthdate()).until(LocalDate.now(), ChronoUnit.YEARS);
@@ -155,5 +149,7 @@ public class Calculation {
         }
         return baseRate;
     }
+
+
 
 }
