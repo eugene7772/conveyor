@@ -1,11 +1,13 @@
 package controller;
 
-import org.springframework.boot.test.context.SpringBootTest;
+import com.CreditPipeline.conveyor.ConveyorApplication;
 import org.junit.jupiter.api.Test;
 
-@SpringBootTest
 public class ConveyorApplicationTest {
+
     @Test
-    void contextLoads() {
+    public void main(){
+        ConveyorApplication.main(new String[]{});
     }
+
 }

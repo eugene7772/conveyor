@@ -3,22 +3,31 @@ package com.CreditPipeline.conveyor.DTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import javax.validation.constraints.Email;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Year;
 
 @Data
 @Schema(description = "Сущность заявки на получение кредита")
 public class LoanApplicationRequestDTO {
 
+    @Min(value = 10000)
     private BigDecimal amount;
 
+    @Min(value = 6)
     private Integer term;
 
+    @NotEmpty
+    @Size(min = 2, max = 30)
     private String firstName;
 
+    @NotEmpty
+    @Size(min = 2, max = 30)
     private String lastName;
 
+    @NotNull
+    @Size(min = 2, max = 30)
     private String middleName;
 
     @Email(regexp = "\" [\\\\w\\\\.]{2,50}@[\\\\w\\\\.]{2,20}\"")
