@@ -15,54 +15,40 @@ import java.time.temporal.ChronoUnit;
 public class ScoringService {
 
     public boolean scoringData(ScoringDataDTO scoringDataDTO) {
-
-        final long age = LocalDate.from(scoringDataDTO.getBirthdate()).until(LocalDate.now(), ChronoUnit.YEARS);
-        String empStatus = scoringDataDTO.getEmploymentDTO().getEmploymentStatus().toString();
-        Integer workExperienceTotal = scoringDataDTO.getEmploymentDTO().getWorkExperienceTotal();
-        Integer workExperienceCurrent = scoringDataDTO.getEmploymentDTO().getWorkExperienceCurrent();
-
-        if(empStatus.equals(EmploymentStatus.Unemployed.toString())){
+        if (isScoring(scoringDataDTO)){
+            return true;
+        }else {
             return false;
         }
-        if (scoringDataDTO.getAmount().compareTo(scoringDataDTO.getEmploymentDTO().getSalary().multiply(BigDecimal.valueOf(20))) >= 0){
-            return false;
-        }
-        if(age < 20 || age > 60){
-            return false;
-        }
-        if(workExperienceTotal < 12 || workExperienceCurrent < 3) {
-            return false;
-        }
-        return true;
     }
 
     public BigDecimal calculateRate(ScoringDataDTO scoringDataDTO){
         BigDecimal baseRate = new BigDecimal(11);
         final long age = LocalDate.from(scoringDataDTO.getBirthdate()).until(LocalDate.now(), ChronoUnit.YEARS);
 
-        if (scoringDataDTO.getEmploymentDTO().getEmploymentStatus().toString().equals(EmploymentStatus.SelfEmployed.toString())) {
+        if (EmploymentStatus.SelfEmployed.equals(scoringDataDTO.getEmploymentDTO().getEmploymentStatus())) {
             baseRate = baseRate.add(BigDecimal.valueOf(1));
         }
-        if (scoringDataDTO.getEmploymentDTO().getEmploymentStatus().toString().equals(EmploymentStatus.BusinessOwner.toString())) {
+        if (EmploymentStatus.BusinessOwner.equals(scoringDataDTO.getEmploymentDTO().getEmploymentStatus())) {
             baseRate = baseRate.add(BigDecimal.valueOf(3));
         }
-        if (scoringDataDTO.getEmploymentDTO().getPosition().toString().equals(Position.MiddleManager.toString())) {
+        if (Position.MiddleManager.equals(scoringDataDTO.getEmploymentDTO().getPosition())) {
             baseRate = baseRate.subtract(BigDecimal.valueOf(2));
         }
-        if (scoringDataDTO.getEmploymentDTO().getPosition().toString().equals(Position.TopManager.toString())) {
+        if (Position.TopManager.equals( scoringDataDTO.getEmploymentDTO().getPosition())) {
             baseRate = baseRate.subtract(BigDecimal.valueOf(4));
         }
-        if (scoringDataDTO.getMaritalStatus().Married.toString().equals(MaritalStatus.Married.toString())) {
+        if (MaritalStatus.Married.equals(scoringDataDTO.getMaritalStatus())) {
             baseRate = baseRate.subtract(BigDecimal.valueOf(3));
         }
-        if (scoringDataDTO.getMaritalStatus().toString().equals(MaritalStatus.Unmarried.toString())) {
+        if (MaritalStatus.Unmarried.equals(scoringDataDTO.getMaritalStatus())) {
             baseRate = baseRate.add(BigDecimal.valueOf(1));
         }
-        if (scoringDataDTO.getGender().Female.toString().equals(Gender.Female.toString()) && (35 <= age && age <= 60) ||
-                scoringDataDTO.getGender().Male.toString().equals(Gender.Male.toString()) && (30 <= age && age <= 55)) {
+        if (Gender.Female.equals( scoringDataDTO.getGender()) && (35 <= age && age <= 60) ||
+                Gender.Male.equals( scoringDataDTO.getGender()) && (30 <= age && age <= 55)) {
             baseRate = baseRate.subtract(BigDecimal.valueOf(3));
         }
-        if (scoringDataDTO.getGender().NotBinary.toString().equals(Gender.NotBinary.toString())) {
+        if (Gender.NotBinary.equals( scoringDataDTO.getGender())) {
             baseRate = baseRate.add(BigDecimal.valueOf(3));
         }
         if (scoringDataDTO.getInsuranceEnabled()) {
@@ -72,5 +58,26 @@ public class ScoringService {
             baseRate = baseRate.subtract(BigDecimal.valueOf(1));
         }
         return baseRate;
+    }
+
+    private boolean isScoring(ScoringDataDTO scoringDataDTO){
+
+        final long age = LocalDate.from(scoringDataDTO.getBirthdate()).until(LocalDate.now(), ChronoUnit.YEARS);
+        Integer workExperienceTotal = scoringDataDTO.getEmploymentDTO().getWorkExperienceTotal();
+        Integer workExperienceCurrent = scoringDataDTO.getEmploymentDTO().getWorkExperienceCurrent();
+
+        if (EmploymentStatus.Unemployed.equals(scoringDataDTO.getEmploymentDTO().getEmploymentStatus())) {
+            return false;
+        }
+        if (scoringDataDTO.getAmount().compareTo(scoringDataDTO.getEmploymentDTO().getSalary().multiply(BigDecimal.valueOf(20))) >= 0) {
+            return false;
+        }
+        if (age < 20 || age > 60) {
+            return false;
+        }
+        if (workExperienceTotal < 12 || workExperienceCurrent < 3) {
+            return false;
+        }
+        return true;
     }
 }
