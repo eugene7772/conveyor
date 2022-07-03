@@ -1,7 +1,7 @@
-package com.CreditPipeline.conveyor.DTO;
+package com.creditPipeline.conveyor.dto;
 
-import com.CreditPipeline.conveyor.enums.Gender;
-import com.CreditPipeline.conveyor.enums.MaritalStatus;
+import com.creditPipeline.conveyor.enums.Gender;
+import com.creditPipeline.conveyor.enums.MaritalStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import java.math.BigDecimal;

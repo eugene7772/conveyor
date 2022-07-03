@@ -1,7 +1,7 @@
-package com.CreditPipeline.conveyor.enums;
+package com.creditPipeline.conveyor.enums;
 
 public enum Gender {
-    Male,
-    Female,
-    NotBinary
+    MALE,
+    FEMALE,
+    NOT_BINARY
 }

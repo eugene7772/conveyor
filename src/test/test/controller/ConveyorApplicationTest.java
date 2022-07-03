@@ -1,6 +1,6 @@
 package controller;
 
-import com.CreditPipeline.conveyor.ConveyorApplication;
+import com.creditPipeline.conveyor.ConveyorApplication;
 import org.junit.jupiter.api.Test;
 
 public class ConveyorApplicationTest {

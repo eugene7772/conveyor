@@ -1,7 +1,7 @@
-package com.CreditPipeline.conveyor.enums;
+package com.creditPipeline.conveyor.enums;
 
 public enum Position {
-    Manager,
-    MiddleManager,
-    TopManager
+    MANAGER,
+    MIDDLE_MANAGER,
+    TOP_MANAGER
 }

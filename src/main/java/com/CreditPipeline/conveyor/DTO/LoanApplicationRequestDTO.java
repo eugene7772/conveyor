@@ -1,4 +1,4 @@
-package com.CreditPipeline.conveyor.DTO;
+package com.creditPipeline.conveyor.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -30,7 +30,7 @@ public class LoanApplicationRequestDTO {
     @Size(min = 2, max = 30)
     private String middleName;
 
-    @Email(regexp = "\" [\\\\w\\\\.]{2,50}@[\\\\w\\\\.]{2,20}\"")
+    @Email
     private String email;
 
     private LocalDate birthdate;

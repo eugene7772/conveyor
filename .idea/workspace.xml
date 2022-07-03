@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="de77fe5a-7773-4285-97c0-95d53a2abe5a" name="Default Changelist" comment="Переделал вправки от 21.06">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/controller/Conveyor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/ConveyorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/ConveyorApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/CreditDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/CreditDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/EmploymentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/EmploymentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/LoanApplicationRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/LoanApplicationRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/LoanOfferDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/LoanOfferDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/PaymentScheduleElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/PaymentScheduleElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/ScoringDataDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/ScoringDataDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/controller/Calculation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/controller/Offers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/EmploymentStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/EmploymentStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/Gender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/MaritalStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/MaritalStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/CalculateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/CalculateService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/CreateOfferService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/OffersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/OffersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/ScoringService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/ScoringService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/swagger/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/swagger/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/test/controller/CalculationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test/controller/CalculationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/test/controller/ConveyorApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test/controller/ConveyorApplicationTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="de1ebe175117324497cf0d0e0e1f4a566722e602" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/creditPipeline/conveyor/dto/LoanApplicationRequestDTO.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/creditPipeline/conveyor/dto/PaymentScheduleElement.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/creditPipeline/conveyor/dto/CreditDTO.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="usePluginRegistry" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="29th4oRWFvJBs0uFgYkVkYGvyLO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Patterns" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.splitter.proportion" value="0.20795107" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\79518\Desktop\УЧЕБА\JavaAll\CreditPipeline\conveyor\src\main\resources\logConfig" />
+      <recent name="C:\Users\79518\Desktop\УЧЕБА\JavaAll\CreditPipeline\conveyor\src\main\java" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.CreditPipeline.conveyor.controller" />
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="controller" />
+      <recent name="DTO" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.conveyor">
+    <configuration name="CalculationTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="conveyor" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.CalculationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="conveyor" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.jdks/openjdk-16.0.2" />
+      <option name="MAIN_CLASS_NAME" value="com.creditPipeline.conveyor.ConveyorApplication" />
+      <module name="conveyor" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in conveyor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="conveyor" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculationTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="conveyor" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.CalculationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="conveyor" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="uniqueId" />
+      <uniqueIds>
+        <uniqueId value="[engine:junit-jupiter]/[class:controller.CalculationTest]" />
+      </uniqueIds>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConveyorApplicationTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="conveyor" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.ConveyorApplicationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Android JUnit.CalculationTest" />
+      <item itemvalue="Application.conveyor" />
+      <item itemvalue="JUnit.All in conveyor" />
+      <item itemvalue="JUnit.ConveyorApplicationTest (1)" />
+      <item itemvalue="JUnit.CalculationTest" />
+      <item itemvalue="JUnit.CalculationTest (1)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CalculationTest (1)" />
+        <item itemvalue="JUnit.CalculationTest" />
+        <item itemvalue="JUnit.All in conveyor" />
+        <item itemvalue="Android JUnit.CalculationTest" />
+        <item itemvalue="JUnit.ConveyorApplicationTest (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="de77fe5a-7773-4285-97c0-95d53a2abe5a" name="Default Changelist" comment="" />
+      <created>1653938103157</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1653938103157</updated>
+    </task>
+    <task id="LOCAL-00001" summary="1.1. Инициализировал Spring-Boot приложение conveyor, добавил в github&#10;1.2. Определил DTO">
+      <created>1653993125315</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1653993125315</updated>
+    </task>
+    <task id="LOCAL-00002" summary="1.3. Определил API">
+      <created>1654029020217</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654029020217</updated>
+    </task>
+    <task id="LOCAL-00003" summary="1.4. Реализована логика работы API: POST: /conveyor/offers, POST: /conveyor/calculation">
+      <created>1654606412068</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1654606412068</updated>
+    </task>
+    <task id="LOCAL-00004" summary="1.5. Покрытие логики микросервиса логгированием, документация API через Swagger">
+      <created>1654678208100</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1654678208100</updated>
+    </task>
+    <task id="LOCAL-00005" summary="1.6. Покрытие логики микросервиса unit-тестами">
+      <created>1654722819215</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1654722819215</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Добавлены файлы в .gitignore, убран target, изменен pom.xml">
+      <created>1655200655087</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1655200655087</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Добавлены файлы в .gitignore, убран target, изменен pom.xml">
+      <created>1655201220427</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1655201220427</updated>
+    </task>
+    <task id="LOCAL-00008" summary="скоринг вынесен в класс ScoringService">
+      <created>1655207502982</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1655207502982</updated>
+    </task>
+    <task id="LOCAL-00009" summary="скоринг вынесен в класс ScoringService">
+      <created>1655207524402</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1655207524402</updated>
+    </task>
+    <task id="LOCAL-00010" summary="вынесен прескоринг к ласс PrescoringService, ConveyorApplication в корне проекта">
+      <created>1655210310382</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1655210310382</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Переделал вправки от 14.06">
+      <created>1655756071346</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1655756071346</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Переделал вправки от 21.06">
+      <created>1656666899327</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1656666899327</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1.1. Инициализировал Spring-Boot приложение conveyor, добавил в github&#10;1.2. Определил DTO" />
+    <MESSAGE value="1.3. Определил API" />
+    <MESSAGE value="1.4. Реализована логика работы API: POST: /conveyor/offers, POST: /conveyor/calculation" />
+    <MESSAGE value="1.5. Покрытие логики микросервиса логгированием, документация API через Swagger" />
+    <MESSAGE value="1.6. Покрытие логики микросервиса unit-тестами" />
+    <MESSAGE value="Добавлены файлы в .gitignore, убран target, изменен pom.xml" />
+    <MESSAGE value="скоринг вынесен в класс ScoringService" />
+    <MESSAGE value="вынесен прескоринг к ласс PrescoringService, ConveyorApplication в корне проекта" />
+    <MESSAGE value="Переделал вправки от 14.06" />
+    <MESSAGE value="Переделал вправки от 21.06" />
+    <option name="LAST_COMMIT_MESSAGE" value="Переделал вправки от 21.06" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/conveyor$CreditDTOTest_contextLoads.ic" NAME="CreditDTOTest.contextLoads Coverage Results" MODIFIED="1654703572091" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>DTO.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/conveyor$ConveyorApplicationTest__1_.ic" NAME="ConveyorApplicationTest (1) Coverage Results" MODIFIED="1655222823572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/conveyor$All_in_conveyor.ic" NAME="All in conveyor Coverage Results" MODIFIED="1655471000201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/conveyor$OffersTest_contextLoads.ic" NAME="OffersTest.contextLoads Coverage Results" MODIFIED="1654698047336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/conveyor$OffersTest.ic" NAME="OffersTest Coverage Results" MODIFIED="1654717766087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/conveyor$ConveyorApplicationTest.ic" NAME="ConveyorApplicationTest Coverage Results" MODIFIED="1654713420375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/conveyor$CalculationTest.ic" NAME="CalculationTest Coverage Results" MODIFIED="1655465511643" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/conveyor$CalculationTest__1_.ic" NAME="CalculationTest (1) Coverage Results" MODIFIED="1655665865161" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+  </component>
+</project>

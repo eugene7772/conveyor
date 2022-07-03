@@ -1,4 +1,4 @@
-package com.CreditPipeline.conveyor.DTO;
+package com.creditPipeline.conveyor.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

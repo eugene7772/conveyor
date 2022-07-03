@@ -1,6 +1,6 @@
-package com.CreditPipeline.conveyor.enums;
+package com.creditPipeline.conveyor.enums;
 
 public enum MaritalStatus {
-    Married,
-    Unmarried,
+    MARRIED,
+    UNMARRIED,
 }

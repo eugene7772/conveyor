@@ -1,8 +1,8 @@
-package com.CreditPipeline.conveyor.enums;
+package com.creditPipeline.conveyor.enums;
 
 public enum EmploymentStatus {
-    Employee,
-    Unemployed,
-    BusinessOwner,
-    SelfEmployed
+    EMPLOYEE,
+    UNEMPLOYED,
+    BUSINESS_OWNER,
+    SELF_EMPLOYED
 }

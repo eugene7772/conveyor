@@ -1,4 +1,4 @@
-package com.CreditPipeline.conveyor.swagger;
+package com.creditPipeline.conveyor.swagger;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

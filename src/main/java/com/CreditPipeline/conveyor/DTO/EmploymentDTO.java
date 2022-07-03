@@ -1,7 +1,7 @@
-package com.CreditPipeline.conveyor.DTO;
+package com.creditPipeline.conveyor.dto;
 
-import com.CreditPipeline.conveyor.enums.EmploymentStatus;
-import com.CreditPipeline.conveyor.enums.Position;
+import com.creditPipeline.conveyor.enums.EmploymentStatus;
+import com.creditPipeline.conveyor.enums.Position;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
