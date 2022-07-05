@@ -15,27 +15,23 @@ import java.util.List;
 public class OffersService {
 
     private final ScoringService scoringService;
+    private final static Logger logger = LogManager.getLogger(OffersService.class);
 
     @Autowired
     public OffersService(ScoringService scoringService) {
         this.scoringService = scoringService;
     }
 
-    private static Logger logger = LogManager.getLogger(OffersService.class);
-
     public List<LoanOfferDTO> getOffers(LoanApplicationRequestDTO loanApplicationRequestDTO) throws IOException {
         List<LoanOfferDTO> offers;
 
-        LoanOfferDTO offer1 = createOffer(0L, false, false, loanApplicationRequestDTO);
+        offers = List.of(createOffer(0L, false, false, loanApplicationRequestDTO),
+                createOffer(1L, false, true, loanApplicationRequestDTO),
+                createOffer(2L, true, false, loanApplicationRequestDTO),
+                createOffer(3L, true, true, loanApplicationRequestDTO));
 
-        LoanOfferDTO offer2 = createOffer(1L, false, true, loanApplicationRequestDTO);
+        logger.debug("Предложения по кредиту: " + offers);
 
-        LoanOfferDTO offer3 = createOffer(2L, true, false, loanApplicationRequestDTO);
-
-        LoanOfferDTO offer4 = createOffer(3L, true, true, loanApplicationRequestDTO);
-
-        offers = List.of(offer1, offer2, offer3, offer4);
-        logger.debug("offers: " + offers);
         return offers;
     }
 
@@ -52,7 +48,7 @@ public class OffersService {
         offer.setMonthlyPayment(loanApplicationRequestDTO.getAmount().divide(BigDecimal.valueOf(loanApplicationRequestDTO.getTerm())));
         offer.setTotalAmount(loanApplicationRequestDTO.getAmount());
 
-        logger.debug("offer: " + offer);
+        logger.debug("Предложение по кредиту: " + offer);
         return offer;
     }
 }

@@ -4,6 +4,7 @@ import com.creditPipeline.conveyor.dto.CreditDTO;
 import com.creditPipeline.conveyor.dto.LoanApplicationRequestDTO;
 import com.creditPipeline.conveyor.dto.LoanOfferDTO;
 import com.creditPipeline.conveyor.dto.ScoringDataDTO;
+import com.creditPipeline.conveyor.exception.ScoringServiceException;
 import com.creditPipeline.conveyor.service.CalculateService;
 import com.creditPipeline.conveyor.service.OffersService;
 import com.creditPipeline.conveyor.service.ScoringService;
@@ -13,6 +14,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -22,12 +24,14 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @RestController
+@RequestMapping("/conveyor")
 @Tag(name = "Конвеер")
 public class Conveyor {
 
     private final ScoringService scoringService;
     private final CalculateService calculateService;
     private final OffersService offersService;
+    private final static Logger logger = LogManager.getLogger(Conveyor.class);
 
     @Autowired
     public Conveyor(ScoringService scoringService, CalculateService calculateService, OffersService offersService) {
@@ -36,28 +40,24 @@ public class Conveyor {
         this.offersService = offersService;
     }
 
-    private static Logger logger = LogManager.getLogger(Conveyor.class);
-
     @PostMapping("/conveyor/calculation")
     @Operation(
             summary = "Расчет",
             description = "Рассчитывает кредит")
-    public CreditDTO calculate(ScoringDataDTO scoringDataDTO) {
+    public CreditDTO calculate(ScoringDataDTO scoringDataDTO) throws ScoringServiceException {
 
         CreditDTO credit = new CreditDTO();
         logger.debug("Credit" + credit);
 
-        if (scoringService.scoringData(scoringDataDTO)) {
-            try {
-                throw new Exception("Клиент не прошел скоринг");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (scoringService.isCreditUnavailable(scoringDataDTO)) {
+            throw new ScoringServiceException("Клиент не прошел скоринг");
         } else {
             credit = calculateService.getCredit(scoringDataDTO);
         }
-        logger.info("return credit");
-        logger.debug("Credit" + credit);
+        logger.debug("Для расчета кредита приходят входные данные: " + "имя: " + scoringDataDTO.getFirstName() +
+                ", фамилия: " + scoringDataDTO.getLastName() + ", отчество: " + scoringDataDTO.getMiddleName() +
+                ", дата рождения: " + scoringDataDTO.getBirthdate() + ", пол: " + scoringDataDTO.getGender() +
+                ", данные о работе: " + scoringDataDTO.getEmploymentDTO());
         return credit;
     }
 
@@ -67,7 +67,9 @@ public class Conveyor {
             description = "При прохождении прескоринга возвращает 4 предложения")
     public List<LoanOfferDTO> getOffers(@Valid LoanApplicationRequestDTO loanApplicationRequestDTO) throws IOException {
 
-        logger.trace("getOffers");
+        logger.debug("Получение ответа на первоначальную заявку с данными: " + " сумма кредита - " + loanApplicationRequestDTO.getAmount() +
+                ", срок - " + loanApplicationRequestDTO.getTerm() + ", ФИО - " + loanApplicationRequestDTO.getFirstName() + " " + loanApplicationRequestDTO.getMiddleName() + " " + loanApplicationRequestDTO.getLastName() +
+                ", email - " + loanApplicationRequestDTO.getEmail() + ", дата рождения - " + loanApplicationRequestDTO.getBirthdate());
 
         final long age = LocalDate.from(loanApplicationRequestDTO.getBirthdate()).until(LocalDate.now(), ChronoUnit.YEARS);
 
@@ -79,10 +81,8 @@ public class Conveyor {
             }
             return null;
         }
-        logger.info("create offers");
         List<LoanOfferDTO> offers = offersService.getOffers(loanApplicationRequestDTO);
 
-        logger.info("return offers");
         logger.debug("Offers" + offers);
         return offers;
     }

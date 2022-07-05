@@ -1,13 +1,11 @@
 package controller;
 
 
-import com.creditPipeline.conveyor.controller.Conveyor;
 import com.creditPipeline.conveyor.dto.CreditDTO;
 import com.creditPipeline.conveyor.dto.ScoringDataDTO;
 import com.creditPipeline.conveyor.enums.Gender;
 import com.creditPipeline.conveyor.enums.MaritalStatus;
 import com.creditPipeline.conveyor.service.ScoringService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

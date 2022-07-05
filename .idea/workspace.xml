@@ -4,28 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de77fe5a-7773-4285-97c0-95d53a2abe5a" name="Default Changelist" comment="Переделал вправки от 21.06">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/controller/Conveyor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/ConveyorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/ConveyorApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/CreditDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/CreditDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/EmploymentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/EmploymentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/LoanApplicationRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/LoanApplicationRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/LoanOfferDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/LoanOfferDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/PaymentScheduleElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/PaymentScheduleElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/ScoringDataDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/DTO/ScoringDataDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/controller/Calculation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/controller/Offers.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/EmploymentStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/EmploymentStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/Gender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/MaritalStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/MaritalStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/enums/Position.java" afterDir="false" />
+    <list default="true" id="de77fe5a-7773-4285-97c0-95d53a2abe5a" name="Default Changelist" comment="Переделал вправки от 03.07">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/controller/Conveyor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/controller/Conveyor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/CalculateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/CalculateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/CreateOfferService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/OffersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/OffersService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/ScoringService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/ScoringService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/swagger/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/swagger/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/test/controller/CalculationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test/controller/CalculationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/test/controller/ConveyorApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test/controller/ConveyorApplicationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656666899327</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Переделал вправки от 03.07">
+      <created>1656839820627</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1656839820627</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -327,7 +321,8 @@
     <MESSAGE value="вынесен прескоринг к ласс PrescoringService, ConveyorApplication в корне проекта" />
     <MESSAGE value="Переделал вправки от 14.06" />
     <MESSAGE value="Переделал вправки от 21.06" />
-    <option name="LAST_COMMIT_MESSAGE" value="Переделал вправки от 21.06" />
+    <MESSAGE value="Переделал вправки от 03.07" />
+    <option name="LAST_COMMIT_MESSAGE" value="Переделал вправки от 03.07" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/conveyor$CreditDTOTest_contextLoads.ic" NAME="CreditDTOTest.contextLoads Coverage Results" MODIFIED="1654703572091" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
