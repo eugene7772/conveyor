@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de77fe5a-7773-4285-97c0-95d53a2abe5a" name="Default Changelist" comment="Переделал вправки от 03.07">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="de77fe5a-7773-4285-97c0-95d53a2abe5a" name="Default Changelist" comment="Переделал вправки от 06.07">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/controller/Conveyor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/controller/Conveyor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/CalculateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/CalculateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/OffersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/OffersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/ScoringService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/CreditPipeline/conveyor/service/ScoringService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/test/controller/CalculationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test/controller/CalculationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +58,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Patterns" />
@@ -283,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656839820627</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Переделал вправки от 06.07">
+      <created>1657057963689</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1657057963689</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -322,7 +323,8 @@
     <MESSAGE value="Переделал вправки от 14.06" />
     <MESSAGE value="Переделал вправки от 21.06" />
     <MESSAGE value="Переделал вправки от 03.07" />
-    <option name="LAST_COMMIT_MESSAGE" value="Переделал вправки от 03.07" />
+    <MESSAGE value="Переделал вправки от 06.07" />
+    <option name="LAST_COMMIT_MESSAGE" value="Переделал вправки от 06.07" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/conveyor$CreditDTOTest_contextLoads.ic" NAME="CreditDTOTest.contextLoads Coverage Results" MODIFIED="1654703572091" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

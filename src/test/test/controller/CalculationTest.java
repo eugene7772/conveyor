@@ -5,6 +5,7 @@ import com.creditPipeline.conveyor.dto.CreditDTO;
 import com.creditPipeline.conveyor.dto.ScoringDataDTO;
 import com.creditPipeline.conveyor.enums.Gender;
 import com.creditPipeline.conveyor.enums.MaritalStatus;
+import com.creditPipeline.conveyor.exception.ScoringServiceException;
 import com.creditPipeline.conveyor.service.ScoringService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -20,7 +21,7 @@ public class CalculationTest {
 
 
     @Test
-    public void testCalculate(){
+    public void testCalculate() throws ScoringServiceException {
 
         ScoringDataDTO scoringDataDTO = new ScoringDataDTO();
 
@@ -32,7 +33,7 @@ public class CalculationTest {
 
         ScoringService scoringService =  Mockito.mock(ScoringService.class);
 
-        Mockito.when(scoringService.scoringData(scoringDataDTO)).thenReturn(true);
+        Mockito.when(scoringService.isCreditUnavailable(scoringDataDTO)).thenReturn(true);
         Mockito.when(scoringService.calculateRate(scoringDataDTO)).thenReturn(BigDecimal.valueOf(18));
         //creditDTO = calculation.calculate(scoringDataDTO);
        // Assertions.assertEquals(BigDecimal.valueOf(45840),creditDTO.getMonthlyPayment());
