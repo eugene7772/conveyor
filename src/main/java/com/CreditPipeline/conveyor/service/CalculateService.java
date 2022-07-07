@@ -34,7 +34,7 @@ public class CalculateService {
         credit.setAmount(scoringDataDTO.getAmount());
         credit.setRate(scoringService.calculateRate(scoringDataDTO));
         credit.setTerm(scoringDataDTO.getTerm());
-        credit.setPsk(calculatePsk(scoringDataDTO, credit.getPaymentSchedule().get(0).getDate(), credit.getPaymentSchedule().get(credit.getPaymentSchedule().size() - 1).getDate()));
+        credit.setPsk(calculatePsk(scoringDataDTO,scoringDataDTO.getTerm()));
         credit.setInsuranceEnabled(scoringDataDTO.getInsuranceEnabled());
         credit.setSalaryClient(scoringDataDTO.getSalaryClient());
         credit.setPaymentSchedule(getPaymentScheduleElement(scoringDataDTO));
@@ -50,18 +50,9 @@ public class CalculateService {
         BigDecimal firstInterestPayment = scoringDataDTO.getAmount().multiply(scoringService.calculateRate(scoringDataDTO)).multiply(BigDecimal.valueOf(LocalDate.now().lengthOfMonth()))
                 .divide(BigDecimal.valueOf(365), 2, RoundingMode.HALF_UP);
         BigDecimal firstDebtPayment = calculateMonthlyPayment(scoringDataDTO).subtract(firstInterestPayment);
-        BigDecimal firstRemainingDebt = scoringDataDTO.getAmount().subtract(firstDebtPayment);
-
-        PaymentScheduleElement firstPaymentScheduleElement = new PaymentScheduleElement();
-        firstPaymentScheduleElement.setNumber(1);
-        firstPaymentScheduleElement.setDate(LocalDate.now().plusMonths(1));
-        firstPaymentScheduleElement.setTotalPayment(calculateMonthlyPayment(scoringDataDTO));
-        firstPaymentScheduleElement.setInterestPayment(firstInterestPayment);
-        firstPaymentScheduleElement.setDebtPayment(firstDebtPayment);
-        firstPaymentScheduleElement.setRemainingDebt(firstRemainingDebt);
         BigDecimal amountOfCreditPayments = firstDebtPayment;
 
-        for (int i = 2; i <= scoringDataDTO.getTerm(); i++) {
+        for (int i = 1; i <= scoringDataDTO.getTerm(); i++) {
             PaymentScheduleElement paymentScheduleElement = new PaymentScheduleElement();
 
             BigDecimal remains = scoringDataDTO.getAmount().subtract(amountOfCreditPayments);
@@ -93,10 +84,10 @@ public class CalculateService {
         return paymentSchedules;
     }
 
-    private BigDecimal calculatePsk(ScoringDataDTO scoringDataDTO, LocalDate firstPaymentScheduleElement, LocalDate lastPaymentScheduleElement) {
+    private BigDecimal calculatePsk(ScoringDataDTO scoringDataDTO, Integer term) {
 
         BigDecimal psk = calculateAmountOfCreditPayments(scoringDataDTO).divide(scoringDataDTO.getAmount(), 2, RoundingMode.HALF_UP).subtract(BigDecimal.valueOf(1))
-                .divide(BigDecimal.valueOf(LocalDate.from(firstPaymentScheduleElement).until(lastPaymentScheduleElement, ChronoUnit.YEARS)))
+                .divide(BigDecimal.valueOf(LocalDate.from(LocalDate.now()).until(LocalDate.now().plusMonths(term), ChronoUnit.YEARS)))
                 .multiply(BigDecimal.valueOf(100));
         logger.debug("psk: " + psk);
         return psk;

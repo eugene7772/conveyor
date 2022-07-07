@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -61,7 +60,7 @@ public class ScoringService {
         return baseRate;
     }
 
-    public boolean isCreditUnavailable(ScoringDataDTO scoringDataDTO) throws ScoringServiceException {
+    public boolean isCreditAvailable(ScoringDataDTO scoringDataDTO) throws ScoringServiceException {
 
         Integer workExperienceTotal = scoringDataDTO.getEmploymentDTO().getWorkExperienceTotal();
         Integer workExperienceCurrent = scoringDataDTO.getEmploymentDTO().getWorkExperienceCurrent();
@@ -78,10 +77,10 @@ public class ScoringService {
         if (workExperienceTotal < 12 || workExperienceCurrent < 3) {
             throw new ScoringServiceException("Не соответствует стаж работы");
         }
-        return false;
+        return true;
     }
 
-    public BigDecimal calculateRateToOffer(Boolean insuranceEnabled, Boolean salaryClient) throws IOException {
+    public BigDecimal calculateRateToOffer(Boolean insuranceEnabled, Boolean salaryClient) {
 
         if (insuranceEnabled) {
             baseRate = baseRate.subtract(BigDecimal.valueOf(2));

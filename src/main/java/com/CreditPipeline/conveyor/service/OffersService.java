@@ -7,8 +7,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 @Service
@@ -22,7 +22,7 @@ public class OffersService {
         this.scoringService = scoringService;
     }
 
-    public List<LoanOfferDTO> getOffers(LoanApplicationRequestDTO loanApplicationRequestDTO) throws IOException {
+    public List<LoanOfferDTO> getOffers(LoanApplicationRequestDTO loanApplicationRequestDTO) {
         List<LoanOfferDTO> offers;
 
         offers = List.of(createOffer(0L, false, false, loanApplicationRequestDTO),
@@ -35,7 +35,7 @@ public class OffersService {
         return offers;
     }
 
-    public LoanOfferDTO createOffer(Long id, Boolean insuranceEnabled, Boolean salaryClient, LoanApplicationRequestDTO loanApplicationRequestDTO) throws IOException {
+    public LoanOfferDTO createOffer(Long id, Boolean insuranceEnabled, Boolean salaryClient, LoanApplicationRequestDTO loanApplicationRequestDTO) {
 
         LoanOfferDTO offer = new LoanOfferDTO();
 
@@ -45,10 +45,9 @@ public class OffersService {
         offer.setRate(scoringService.calculateRateToOffer(insuranceEnabled, salaryClient));
         offer.setRequestedAmount(loanApplicationRequestDTO.getAmount());
         offer.setTerm(loanApplicationRequestDTO.getTerm());
-        offer.setMonthlyPayment(loanApplicationRequestDTO.getAmount().divide(BigDecimal.valueOf(loanApplicationRequestDTO.getTerm())));
+        offer.setMonthlyPayment(loanApplicationRequestDTO.getAmount().divide(BigDecimal.valueOf(loanApplicationRequestDTO.getTerm()),2, RoundingMode.HALF_UP));
         offer.setTotalAmount(loanApplicationRequestDTO.getAmount());
 
-        logger.debug("Предложение по кредиту: " + offer);
         return offer;
     }
 }

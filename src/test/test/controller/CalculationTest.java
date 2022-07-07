@@ -33,7 +33,7 @@ public class CalculationTest {
 
         ScoringService scoringService =  Mockito.mock(ScoringService.class);
 
-        Mockito.when(scoringService.isCreditUnavailable(scoringDataDTO)).thenReturn(true);
+        Mockito.when(scoringService.isCreditAvailable(scoringDataDTO)).thenReturn(true);
         Mockito.when(scoringService.calculateRate(scoringDataDTO)).thenReturn(BigDecimal.valueOf(18));
         //creditDTO = calculation.calculate(scoringDataDTO);
        // Assertions.assertEquals(BigDecimal.valueOf(45840),creditDTO.getMonthlyPayment());

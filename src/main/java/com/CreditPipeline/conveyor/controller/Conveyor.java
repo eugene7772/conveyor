@@ -4,6 +4,7 @@ import com.creditPipeline.conveyor.dto.CreditDTO;
 import com.creditPipeline.conveyor.dto.LoanApplicationRequestDTO;
 import com.creditPipeline.conveyor.dto.LoanOfferDTO;
 import com.creditPipeline.conveyor.dto.ScoringDataDTO;
+import com.creditPipeline.conveyor.exception.AgeException;
 import com.creditPipeline.conveyor.exception.ScoringServiceException;
 import com.creditPipeline.conveyor.service.CalculateService;
 import com.creditPipeline.conveyor.service.OffersService;
@@ -14,6 +15,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,7 +42,7 @@ public class Conveyor {
         this.offersService = offersService;
     }
 
-    @PostMapping("/conveyor/calculation")
+    @PostMapping(value = "/calculation")
     @Operation(
             summary = "Расчет",
             description = "Рассчитывает кредит")
@@ -49,10 +51,10 @@ public class Conveyor {
         CreditDTO credit = new CreditDTO();
         logger.debug("Credit" + credit);
 
-        if (scoringService.isCreditUnavailable(scoringDataDTO)) {
-            throw new ScoringServiceException("Клиент не прошел скоринг");
-        } else {
+        if (scoringService.isCreditAvailable(scoringDataDTO)) {
             credit = calculateService.getCredit(scoringDataDTO);
+        } else {
+            throw new ScoringServiceException("Клиент не прошел скоринг");
         }
         logger.debug("Для расчета кредита приходят входные данные: " + "имя: " + scoringDataDTO.getFirstName() +
                 ", фамилия: " + scoringDataDTO.getLastName() + ", отчество: " + scoringDataDTO.getMiddleName() +
@@ -61,11 +63,11 @@ public class Conveyor {
         return credit;
     }
 
-    @PostMapping("/conveyor/offers")
+    @PostMapping(value = "/offers")
     @Operation(
             summary = "Создание предложений",
             description = "При прохождении прескоринга возвращает 4 предложения")
-    public List<LoanOfferDTO> getOffers(@Valid LoanApplicationRequestDTO loanApplicationRequestDTO) throws IOException {
+    public List<LoanOfferDTO> getOffers(@RequestBody @Valid LoanApplicationRequestDTO loanApplicationRequestDTO) {
 
         logger.debug("Получение ответа на первоначальную заявку с данными: " + " сумма кредита - " + loanApplicationRequestDTO.getAmount() +
                 ", срок - " + loanApplicationRequestDTO.getTerm() + ", ФИО - " + loanApplicationRequestDTO.getFirstName() + " " + loanApplicationRequestDTO.getMiddleName() + " " + loanApplicationRequestDTO.getLastName() +
@@ -74,12 +76,7 @@ public class Conveyor {
         final long age = LocalDate.from(loanApplicationRequestDTO.getBirthdate()).until(LocalDate.now(), ChronoUnit.YEARS);
 
         if (age < 18) {
-            try {
-                throw new Exception("Возраст не позволяет взять кредит: " + age + "< 18");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
+           throw new AgeException("Клиенту меньше чем 18 лет");
         }
         List<LoanOfferDTO> offers = offersService.getOffers(loanApplicationRequestDTO);
 
