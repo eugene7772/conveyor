@@ -25,6 +25,8 @@ public class ScoringService {
 
     public BigDecimal calculateRate(ScoringDataDTO scoringDataDTO) {
 
+        baseRate = BigDecimal.valueOf(12);
+
         if (EmploymentStatus.SELF_EMPLOYED.equals(scoringDataDTO.getEmploymentDTO().getEmploymentStatus())) {
             baseRate = baseRate.add(BigDecimal.valueOf(1));
         }
