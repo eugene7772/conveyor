@@ -2,6 +2,7 @@ package com.creditPipeline.conveyor.dto;
 
 import com.creditPipeline.conveyor.enums.Gender;
 import com.creditPipeline.conveyor.enums.MaritalStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import java.math.BigDecimal;
@@ -18,9 +19,13 @@ public class ScoringDataDTO {
     private String lastName;
     private String middleName;
     private Gender gender;
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate birthdate;
     private String passportSeries;
     private String passportNumber;
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate passportIssueDate;
     private String passportIssueBranch;
     private MaritalStatus maritalStatus;

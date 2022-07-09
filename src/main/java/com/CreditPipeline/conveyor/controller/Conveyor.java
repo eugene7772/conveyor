@@ -46,7 +46,7 @@ public class Conveyor {
     @Operation(
             summary = "Расчет",
             description = "Рассчитывает кредит")
-    public CreditDTO calculate(ScoringDataDTO scoringDataDTO) throws ScoringServiceException {
+    public CreditDTO calculate(@RequestBody ScoringDataDTO scoringDataDTO) throws ScoringServiceException {
 
         CreditDTO credit = new CreditDTO();
         logger.debug("Credit" + credit);
