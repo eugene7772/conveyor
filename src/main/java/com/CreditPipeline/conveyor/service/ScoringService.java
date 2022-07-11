@@ -45,8 +45,8 @@ public class ScoringService {
         if (MaritalStatus.UNMARRIED.equals(scoringDataDTO.getMaritalStatus())) {
             baseRate = baseRate.add(BigDecimal.valueOf(1));
         }
-        if (Gender.FEMALE.equals(scoringDataDTO.getGender()) && (35 <= calculateAge(scoringDataDTO) && calculateAge(scoringDataDTO) <= 60) ||
-                Gender.MALE.equals(scoringDataDTO.getGender()) && (30 <= calculateAge(scoringDataDTO) && calculateAge(scoringDataDTO) <= 55)) {
+        if (Gender.FEMALE.equals(scoringDataDTO.getGender()) && (35 <= calculateAge(scoringDataDTO.getBirthdate()) && calculateAge(scoringDataDTO.getBirthdate()) <= 60) ||
+                Gender.MALE.equals(scoringDataDTO.getGender()) && (30 <= calculateAge(scoringDataDTO.getBirthdate()) && calculateAge(scoringDataDTO.getBirthdate()) <= 55)) {
             baseRate = baseRate.subtract(BigDecimal.valueOf(3));
         }
         if (Gender.NOT_BINARY.equals(scoringDataDTO.getGender())) {
@@ -58,7 +58,6 @@ public class ScoringService {
         if (scoringDataDTO.getSalaryClient()) {
             baseRate = baseRate.subtract(BigDecimal.valueOf(1));
         }
-        logger.debug("baseRate: " + baseRate);
         return baseRate;
     }
 
@@ -73,16 +72,19 @@ public class ScoringService {
         if (scoringDataDTO.getAmount().compareTo(scoringDataDTO.getEmploymentDTO().getSalary().multiply(BigDecimal.valueOf(20))) >= 0) {
             throw new ScoringServiceException("Сумма займа больше, чем 20 зарплат");
         }
-        if (calculateAge(scoringDataDTO) < 20 || calculateAge(scoringDataDTO) > 60) {
+        if (calculateAge(scoringDataDTO.getBirthdate()) < 20 || calculateAge(scoringDataDTO.getBirthdate()) > 60) {
             throw new ScoringServiceException("Возраст клиента не подходит");
         }
         if (workExperienceTotal < 12 || workExperienceCurrent < 3) {
             throw new ScoringServiceException("Не соответствует стаж работы");
         }
+        logger.debug("isCreditAvailable = " + true);
         return true;
     }
 
     public BigDecimal calculateRateToOffer(Boolean insuranceEnabled, Boolean salaryClient) {
+
+        baseRate = BigDecimal.valueOf(12);
 
         if (insuranceEnabled) {
             baseRate = baseRate.subtract(BigDecimal.valueOf(2));
@@ -94,12 +96,11 @@ public class ScoringService {
         } else {
             baseRate = baseRate.add(BigDecimal.valueOf(1.5));
         }
-        logger.debug("rateForOffer: " + baseRate);
         return baseRate;
     }
 
-    private Long calculateAge(ScoringDataDTO scoringDataDTO) {
-        return LocalDate.from(scoringDataDTO.getBirthdate()).until(LocalDate.now(), ChronoUnit.YEARS);
+    public Long calculateAge(LocalDate birthDate) {
+        return LocalDate.from(birthDate).until(LocalDate.now(), ChronoUnit.YEARS);
     }
 
 }

@@ -1,7 +1,6 @@
 package com.creditPipeline.conveyor.exception;
 
 import com.creditPipeline.conveyor.dto.ScoringDataDTO;
-import com.creditPipeline.conveyor.service.ScoringService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,6 +14,12 @@ public class ScoringServiceExceptionHandler {
         HttpStatus badRequest = HttpStatus.BAD_REQUEST;
         ScoringDataDTO scoringDataDTO = new ScoringDataDTO();
         return new ResponseEntity<>(scoringDataDTO,badRequest);
+    }
+
+    @ExceptionHandler(value = {AgeException.class})
+    public ResponseEntity<Object> handleAgeException(AgeException e){
+        HttpStatus badRequest = HttpStatus.BAD_REQUEST;
+        return new ResponseEntity<>(e.getMessage(),badRequest);
     }
 
 }

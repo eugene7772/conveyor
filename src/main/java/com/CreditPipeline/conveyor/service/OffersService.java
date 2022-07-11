@@ -8,18 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 
 @Service
 public class OffersService {
 
     private final ScoringService scoringService;
+    private final CalculateService calculateService;
     private final static Logger logger = LogManager.getLogger(OffersService.class);
 
     @Autowired
-    public OffersService(ScoringService scoringService) {
+    public OffersService(ScoringService scoringService, CalculateService calculateService) {
         this.scoringService = scoringService;
+        this.calculateService = calculateService;
     }
 
     public List<LoanOfferDTO> getOffers(LoanApplicationRequestDTO loanApplicationRequestDTO) {
@@ -45,8 +46,8 @@ public class OffersService {
         offer.setRate(scoringService.calculateRateToOffer(insuranceEnabled, salaryClient));
         offer.setRequestedAmount(loanApplicationRequestDTO.getAmount());
         offer.setTerm(loanApplicationRequestDTO.getTerm());
-        offer.setMonthlyPayment(loanApplicationRequestDTO.getAmount().divide(BigDecimal.valueOf(loanApplicationRequestDTO.getTerm()),2, RoundingMode.HALF_UP));
-        offer.setTotalAmount(loanApplicationRequestDTO.getAmount());
+        offer.setMonthlyPayment(calculateService.calculateMonthlyPaymentForOffer(insuranceEnabled,salaryClient,loanApplicationRequestDTO));
+        offer.setTotalAmount(offer.getMonthlyPayment().multiply(BigDecimal.valueOf(loanApplicationRequestDTO.getTerm())));
 
         return offer;
     }

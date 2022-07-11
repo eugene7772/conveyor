@@ -18,11 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
 
-import javax.validation.Valid;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @RestController
@@ -46,7 +43,7 @@ public class Conveyor {
     @Operation(
             summary = "Расчет",
             description = "Рассчитывает кредит")
-    public CreditDTO calculate(@RequestBody ScoringDataDTO scoringDataDTO) throws ScoringServiceException {
+    public CreditDTO calculate(@RequestBody @Validated ScoringDataDTO scoringDataDTO) throws ScoringServiceException {
 
         CreditDTO credit = new CreditDTO();
         logger.debug("Credit" + credit);
@@ -67,20 +64,17 @@ public class Conveyor {
     @Operation(
             summary = "Создание предложений",
             description = "При прохождении прескоринга возвращает 4 предложения")
-    public List<LoanOfferDTO> getOffers(@RequestBody @Valid LoanApplicationRequestDTO loanApplicationRequestDTO) {
+    public List<LoanOfferDTO> getOffers(@RequestBody @Validated LoanApplicationRequestDTO loanApplicationRequestDTO) {
 
         logger.debug("Получение ответа на первоначальную заявку с данными: " + " сумма кредита - " + loanApplicationRequestDTO.getAmount() +
                 ", срок - " + loanApplicationRequestDTO.getTerm() + ", ФИО - " + loanApplicationRequestDTO.getFirstName() + " " + loanApplicationRequestDTO.getMiddleName() + " " + loanApplicationRequestDTO.getLastName() +
                 ", email - " + loanApplicationRequestDTO.getEmail() + ", дата рождения - " + loanApplicationRequestDTO.getBirthdate());
 
-        final long age = LocalDate.from(loanApplicationRequestDTO.getBirthdate()).until(LocalDate.now(), ChronoUnit.YEARS);
-
-        if (age < 18) {
-           throw new AgeException("Клиенту меньше чем 18 лет");
+        if (scoringService.calculateAge(loanApplicationRequestDTO.getBirthdate()) < 18) {
+            throw new AgeException("Клиенту меньше чем 18 лет");
         }
         List<LoanOfferDTO> offers = offersService.getOffers(loanApplicationRequestDTO);
 
-        logger.debug("Offers" + offers);
         return offers;
     }
 

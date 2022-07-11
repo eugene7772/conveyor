@@ -5,6 +5,10 @@ import com.creditPipeline.conveyor.enums.MaritalStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -13,26 +17,58 @@ import java.time.LocalDate;
 @Data
 public class ScoringDataDTO {
 
+    @Min(value = 10000)
     private BigDecimal amount;
+
+    @Min(value = 6)
     private Integer term;
+
+    @NotNull
+    @Size(min = 2, max = 30)
     private String firstName;
+
+    @NotNull
+    @Size(min = 2, max = 30)
     private String lastName;
+
+    @NotNull
+    @Size(min = 2, max = 30)
     private String middleName;
+
+    @NotNull
     private Gender gender;
 
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate birthdate;
+
+    @NotNull
     private String passportSeries;
+
+    @NotNull
     private String passportNumber;
 
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate passportIssueDate;
+
+    @NotNull
     private String passportIssueBranch;
+
+    @NotNull
     private MaritalStatus maritalStatus;
+
+    @NotNull
     private Integer dependentAmount;
+
+    @NotNull
     private EmploymentDTO employmentDTO;
+
+    @NotNull
     private String account;
+
+    @NotNull
     private Boolean isInsuranceEnabled;
+
+    @NotNull
     private Boolean isSalaryClient;
 
     public BigDecimal getAmount() {
