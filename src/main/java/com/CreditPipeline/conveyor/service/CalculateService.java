@@ -52,8 +52,8 @@ public class CalculateService {
 
         List<PaymentScheduleElement> paymentSchedules = new ArrayList<>();
 
-        BigDecimal firstInterestPayment = scoringDataDTO.getAmount().multiply(scoringService.calculateRate(scoringDataDTO)).multiply(BigDecimal.valueOf(LocalDate.now().lengthOfMonth()))
-                .divide(BigDecimal.valueOf(365), 2, RoundingMode.HALF_UP).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+        BigDecimal firstInterestPayment = (scoringDataDTO.getAmount().multiply((scoringService.calculateRate(scoringDataDTO)).divide(BigDecimal.valueOf(100), 4, RoundingMode.HALF_UP))).multiply(BigDecimal.valueOf(LocalDate.now().plusMonths(1).lengthOfMonth()))
+                .divide(BigDecimal.valueOf(365),4, RoundingMode.HALF_UP);
         BigDecimal firstDebtPayment = calculateMonthlyPayment(scoringDataDTO).subtract(firstInterestPayment);
         BigDecimal amountOfCreditPayments = firstDebtPayment;
 
@@ -64,16 +64,19 @@ public class CalculateService {
         firstPaymentScheduleElement.setTotalPayment(calculateMonthlyPayment(scoringDataDTO));
         firstPaymentScheduleElement.setInterestPayment(firstInterestPayment);
         firstPaymentScheduleElement.setDebtPayment(firstDebtPayment);
-        firstPaymentScheduleElement.setRemainingDebt(scoringDataDTO.getAmount().subtract(amountOfCreditPayments));
+        firstPaymentScheduleElement.setRemainingDebt(scoringDataDTO.getAmount().subtract(firstDebtPayment));
 
         paymentSchedules.add(firstPaymentScheduleElement);
 
         for (int i = 2; i <= scoringDataDTO.getTerm(); i++) {
             PaymentScheduleElement paymentScheduleElement = new PaymentScheduleElement();
 
+            BigDecimal daysCurrentMonth = BigDecimal.valueOf((LocalDate.now().plusMonths(i)).lengthOfMonth());
+
             BigDecimal remains = scoringDataDTO.getAmount().subtract(amountOfCreditPayments);
-            BigDecimal interestPayment = remains.multiply(scoringService.calculateRate(scoringDataDTO)).multiply(BigDecimal.valueOf(LocalDate.now().lengthOfMonth()))
-                    .divide(BigDecimal.valueOf(365), 2, RoundingMode.HALF_UP).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+
+            BigDecimal interestPayment = remains.multiply((scoringService.calculateRate(scoringDataDTO)).divide(BigDecimal.valueOf(100), 5, RoundingMode.HALF_UP)).multiply(daysCurrentMonth)
+                    .divide(BigDecimal.valueOf(365), 5, RoundingMode.HALF_UP);
             BigDecimal debtPayment = calculateMonthlyPayment(scoringDataDTO).subtract(interestPayment);
             amountOfCreditPayments = amountOfCreditPayments.add(debtPayment);
             BigDecimal lastRemains = remains.subtract(debtPayment);
@@ -96,7 +99,7 @@ public class CalculateService {
     public BigDecimal calculatePsk(ScoringDataDTO scoringDataDTO, Integer term) {
 
         BigDecimal psk = calculateAmountOfCreditPayments(scoringDataDTO).divide(scoringDataDTO.getAmount(), 2, RoundingMode.HALF_UP).subtract(BigDecimal.valueOf(1))
-                .divide(BigDecimal.valueOf(LocalDate.from(LocalDate.now()).until(LocalDate.now().plusMonths(term), ChronoUnit.YEARS)))
+                .divide(BigDecimal.valueOf(LocalDate.now().until(LocalDate.now().plusMonths(term), ChronoUnit.MONTHS)).divide(BigDecimal.valueOf(12), 5, RoundingMode.HALF_UP), 2, RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100));
         return psk;
     }
@@ -115,10 +118,10 @@ public class CalculateService {
         final BigDecimal countMonthsInYear = new BigDecimal(12);
         final BigDecimal toSkaryal = new BigDecimal(100);
 
-        BigDecimal monthlyInterestRate = scoringService.calculateRate(scoringDataDTO).divide(countMonthsInYear, 2, RoundingMode.HALF_UP).divide(toSkaryal, 2, RoundingMode.HALF_UP);
+        BigDecimal monthlyInterestRate = scoringService.calculateRate(scoringDataDTO).divide(countMonthsInYear, 4, RoundingMode.HALF_UP).divide(toSkaryal, 4, RoundingMode.HALF_UP);
 
         BigDecimal annuityRate = monthlyInterestRate.multiply((BigDecimal.valueOf(1).add(monthlyInterestRate)).pow(scoringDataDTO.getTerm()))
-                .divide((BigDecimal.valueOf(1).add(monthlyInterestRate)).pow(scoringDataDTO.getTerm()).subtract(BigDecimal.valueOf(1)), 6, RoundingMode.HALF_UP);
+                .divide((BigDecimal.valueOf(1).add(monthlyInterestRate)).pow(scoringDataDTO.getTerm()).subtract(BigDecimal.valueOf(1)), 4, RoundingMode.HALF_UP);
         BigDecimal monthlyPayment = scoringDataDTO.getAmount().multiply(annuityRate).setScale(3);
         return monthlyPayment;
     }
