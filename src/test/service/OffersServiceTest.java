@@ -17,6 +17,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
@@ -25,9 +26,6 @@ public class OffersServiceTest {
 
     @InjectMocks
     private OffersService offersService;
-
-    @Mock
-    private CalculateService calculateService;
 
     @Mock
     private ScoringService scoringService;
@@ -40,8 +38,16 @@ public class OffersServiceTest {
         loanApplicationRequestDTO.setAmount(BigDecimal.valueOf(500000));
         loanApplicationRequestDTO.setTerm(18);
 
+        when(scoringService.calculateRateToOffer(false,false)).thenReturn(BigDecimal.valueOf(15.5));
+        when(scoringService.calculateRateToOffer(false,true)).thenReturn(BigDecimal.valueOf(12.5));
+        when(scoringService.calculateRateToOffer(true,false)).thenReturn(BigDecimal.valueOf(11.5));
+        when(scoringService.calculateRateToOffer(true,true)).thenReturn(BigDecimal.valueOf(9.5));
+
         List<LoanOfferDTO> offers = offersService.getOffers(loanApplicationRequestDTO);
-        Assertions.assertEquals(BigDecimal.valueOf(27777.78), offers.get(0).getMonthlyPayment());
+        Assertions.assertEquals(BigDecimal.valueOf(31310).setScale(3), offers.get(0).getMonthlyPayment());
+        Assertions.assertEquals(BigDecimal.valueOf(30607.500).setScale(3), offers.get(1).getMonthlyPayment());
+        Assertions.assertEquals(BigDecimal.valueOf(30375).setScale(3), offers.get(2).getMonthlyPayment());
+        Assertions.assertEquals(BigDecimal.valueOf(29913.500).setScale(3), offers.get(3).getMonthlyPayment());
     }
 
     @Test
@@ -53,9 +59,8 @@ public class OffersServiceTest {
         loanApplicationRequestDTO.setTerm(18);
 
         when(scoringService.calculateRateToOffer(false,false)).thenReturn(BigDecimal.valueOf(15.5));
-        when(calculateService.calculateMonthlyPaymentForOffer(false,false, loanApplicationRequestDTO)).thenReturn(BigDecimal.valueOf(27777.78));
         LoanOfferDTO offer = offersService.createOffer(0L, false, false, loanApplicationRequestDTO);
-        Assertions.assertEquals(BigDecimal.valueOf(27777.78), offer.getMonthlyPayment());
+        Assertions.assertEquals(BigDecimal.valueOf(31310), offer.getMonthlyPayment().setScale(0));
     }
 
 }

@@ -5,6 +5,7 @@ import com.creditPipeline.conveyor.dto.LoanApplicationRequestDTO;
 import com.creditPipeline.conveyor.dto.ScoringDataDTO;
 import com.creditPipeline.conveyor.exception.AgeException;
 import com.creditPipeline.conveyor.exception.ScoringServiceException;
+import com.creditPipeline.conveyor.service.CalculateService;
 import com.creditPipeline.conveyor.service.ScoringService;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
@@ -26,6 +28,9 @@ public class ConveyorTest {
 
     @Mock
     private ScoringService scoringService;
+
+    @Mock
+    private CalculateService calculateService;
 
     @InjectMocks
     private Conveyor conveyor;
@@ -39,6 +44,15 @@ public class ConveyorTest {
             conveyor.calculate(scoringDataDTO);
         });
         Assertions.assertEquals("Клиент не прошел скоринг", scoringServiceException.getMessage());
+    }
+    @Test
+    public void testCalculateCredit() {
+
+        when(scoringService.isCreditAvailable(any())).thenReturn(Boolean.TRUE);
+        ScoringDataDTO scoringDataDTO = new ScoringDataDTO();
+        conveyor.calculate(scoringDataDTO);
+        Mockito.verify(calculateService).getCredit(scoringDataDTO);
+
     }
 
     @Test
